@@ -48,4 +48,16 @@ async def invite(ctx):
     embed.add_field(name = "Invite link:", value="The default invite link is [Crypher.net](Crypher.net)", inline=True)
     await ctx.send(embed=embed)
 
+## Bot information command
+@client.command()
+async def botinfo(ctx):
+    embed = discord.Embed(
+        title="Bot Information",
+        color = discord.Color.from_rgb(0,255,152)
+    )
+    embed.set_author(name="Cry-Bot", icon_url="https://cdn.discordapp.com/attachments/495477198967406614/764638753129103360/CryBotTempProfPic.PNG")
+    embed.add_field(name="Developer:", value="Crypher#0001", inline=True)
+    embed.add_field(name="Github Repository:", value="[Click here](https://github.com/KobyW/Cry-Bot)", inline=False)
+    await ctx.send(embed=embed)
+
 client.run(TOKEN)
