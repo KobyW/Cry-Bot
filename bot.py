@@ -9,7 +9,6 @@
 import discord
 from discord.ext import commands
 from configparser import ConfigParser
-import requests
 
 # Using configparser to fetch token from config.ini
 # This prevents the token from being pushed to github 
@@ -39,6 +38,11 @@ async def yo(ctx):
 
 @client.command()
 async def invite(ctx):
-    await ctx.send('Crypher.net is the default invite link')
+    embed = discord.Embed(
+        color = discord.Color.from_rgb(0, 255, 152)
+    )
+    embed.set_author(name="Cry-Bot", icon_url="https://cdn.discordapp.com/attachments/495477198967406614/764638753129103360/CryBotTempProfPic.PNG")
+    embed.add_field(name = "Invite link:", value="The default invite link is [Crypher.net](Crypher.net)", inline=True)
+    await ctx.send(embed=embed)
 
 client.run(TOKEN)
