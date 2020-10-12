@@ -10,14 +10,14 @@ import discord
 from discord.ext import commands
 from configparser import ConfigParser
 
-# Using configparser to fetch token from config.ini
-# This prevents the token from being pushed to github 
+## Using ConfigParser() to parse data from config.ini (such as TOKEN)
 parser = ConfigParser()
 parser.read('./config.ini')
 TOKEN = parser.get('ini', 'token')
 
 client = commands.Bot(command_prefix = '.')
 
+## on_ready function executes after bot is ready to receive data from users
 @client.event
 async def on_ready():
     print('\n')
@@ -26,16 +26,19 @@ async def on_ready():
     print('\n')
     await client.change_presence(activity=discord.Game(name="Under Development - @Crypher#0001"))
 
+## React with custom-emoji to every valid user command
 @client.event
 async def on_command_completion(ctx):
     message = ctx.message 
     emoji = client.get_emoji(764607102378967041)
     await message.add_reaction(emoji)
 
+## Ping command to check bot latency
 @client.command()
 async def yo(ctx):
-    await ctx.send(f'yo. ({round (client.latency * 1000) }ms)')
+    await ctx.send(f'`yo. ({round (client.latency * 1000) }ms)`')
 
+## Invite command displays embed with invite-link
 @client.command()
 async def invite(ctx):
     embed = discord.Embed(
